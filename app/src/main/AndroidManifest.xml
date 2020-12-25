@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.wuliqinwang.android.robot">
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Robot">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--配置中转服务-->
+        <service
+            android:name=".message.MessageTransitService"
+            android:exported="true"
+            android:enabled="true"
+            android:priority="1000"
+            android:persistent="true"
+            android:label="MessageTransitService"
+            android:process=":MessageTransitService"
+            tools:ignore="ExportedService" />
+        <!--配置我们机器人是否要作为Xposed中的一个模块-->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true"/>
+        <!--配置我们的机器热在Xposed的里面模块的描述-->
+        <meta-data
+            android:name="xposeddescription"
+            android:value="@string/app_name"/>
+        <!--配置Xposed的最小版本号-->
+        <meta-data
+            android:name="xposedminversion"
+            android:value="53"/>
+    </application>
+</manifest>
